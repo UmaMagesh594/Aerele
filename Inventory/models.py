@@ -26,7 +26,6 @@ class ProductMovement(db.Model):
     product_id = db.Column(db.String(64), db.ForeignKey('product.product_id'), nullable=False)
     qty = db.Column(db.Integer, nullable=False)
 
-    # optional relationships for convenience
     product = db.relationship('Product', backref='movements')
     from_loc = db.relationship('Location', foreign_keys=[from_location])
     to_loc = db.relationship('Location', foreign_keys=[to_location])
