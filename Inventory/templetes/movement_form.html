@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Add Movement</h3>
+<form method="post">
+  <div class="mb-3">
+    <label class="form-label">Product</label>
+    <select name="product_id" class="form-select" required>
+      <option value="">-- choose product --</option>
+      {% for p in products %}
+      <option value="{{ p.product_id }}">{{ p.name }} ({{ p.product_id }})</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label class="form-label">From Location (leave blank for incoming)</label>
+      <select name="from_location" class="form-select">
+        <option value="">-- none --</option>
+        {% for l in locations %}
+        <option value="{{ l.location_id }}">{{ l.name }} ({{ l.location_id }})</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="col-md-6 mb-3">
+      <label class="form-label">To Location (leave blank for outgoing)</label>
+      <select name="to_location" class="form-select">
+        <option value="">-- none --</option>
+        {% for l in locations %}
+        <option value="{{ l.location_id }}">{{ l.name }} ({{ l.location_id }})</option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Quantity</label>
+    <input type="number" name="qty" class="form-control" min="1" required />
+  </div>
+  <button class="btn btn-primary">Record</button>
+  <a class="btn btn-link" href="{{ url_for('list_movements') }}">Cancel</a>
+</form>
+{% endblock %}
